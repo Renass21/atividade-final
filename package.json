@@ -5,7 +5,7 @@
     "author": "Renato dos Santos Silva",
     "type": "module",
       "scripts": {
-        "start": "node ATIVIDADE FINAL/index"
+        "start": "node /index.js"
       },
     "dependencies": {
       "express": "^4.18.2"
