@@ -3,6 +3,10 @@ import express from "express";
 const app = express();
 app.use(express.json());
 
+app.get("/", function (requisicao, resposta) {
+  resposta.status(200);
+  resposta.send("Bem vindo a minha primeira API!");
+})
 //lista de usuarios com as seguintes propriedades
 //usario.nome
 //usuario.senha
