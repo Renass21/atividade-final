@@ -24,7 +24,18 @@ let identificadorUnicoUsuario = 0;
 //recado.titulo
 //recado.descricao
 //recado.identificador
-const recados = [];
+const recados = [{titulo: "teste",
+descricao: "Boa noite growdever",
+identificador: 0,
+},
+{titulo: "teste",
+descricao: "Boa tarde growdever",
+identificador: 1,
+},
+{titulo: "teste",
+descricao: "Bom dia growdever",
+identificador: 2,
+}];
 let identificadorUnicoRecado = 0;
 
 // deve receber um json no body com as seguintes propriedades
