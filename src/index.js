@@ -14,7 +14,10 @@ app.get("/", function (requisicao, resposta) {
 //usuario.senha
 //usuario.email
 //usuario.identificador
-const usuarios = [];
+const usuarios = [{nome: "teste",
+email: "teste@teste.com",
+senha: "12345",
+}];
 let identificadorUnicoUsuario = 0;
 
 //lista de recados com as seguintes propriedades
