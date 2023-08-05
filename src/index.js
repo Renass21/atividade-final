@@ -178,5 +178,5 @@ app.delete("/recados/:id", function (requisicao, resposta) {
 });
 
 app.listen(3000, function () {
-  console.log("servidor rodando na porta 3000: url http://localhost:3000/");
+  console.log("servidor rodando na porta 3000: url https://api-crud-de-recados.onrender.com");
 });
