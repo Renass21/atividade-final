@@ -136,7 +136,18 @@ app.get("/recados/:id", function (requisicao, resposta) {
     resposta.status(404);
     resposta.send("Recado não encontrado");
   }
+  const messagesPerPage = 5; // Número de mensagens por página
+  const totalMessages = 20; // Total de mensagens no exemplo
+  const totalPages = Math.ceil(totalMessages / messagesPerPage);
+  
+  const paginationContainer = document.querySelector('.pagination');
+  const messagesContainer = document.querySelector('.messages');
+  
+  function renderMessages(page) {
+    const startIdx = (page - 1) * messagesPerPage;
+    const endIdx = startIdx + messagesPerPage;
 });
+
 
 app.put("/recados/:id", function (requisicao, resposta) {
   const bodyInvalido = !requisicao.body.titulo || !requisicao.body.descricao;
