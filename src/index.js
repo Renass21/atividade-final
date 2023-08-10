@@ -115,9 +115,7 @@ app.post("/usuarios/login", function (requisicao, resposta) {
     resposta.send("Email ou senha inválidos");
   }
 });
-
 // crud de recados
-
 app.post("/recados", function (requisicao, resposta) {
   const bodyInvalido = !requisicao.body.titulo || !requisicao.body.descricao;
   if (bodyInvalido) {
