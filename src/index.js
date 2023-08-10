@@ -35,6 +35,30 @@ identificador: 1,
 {titulo: "teste3",
 descricao: "Bom dia growdever",
 identificador: 2,
+},
+{titulo: "teste4",
+descricao: "Boa noite growdever",
+identificador: 3,
+},
+{titulo: "teste5",
+descricao: "Boa tarde growdever",
+identificador:4,
+},
+{titulo: "teste6",
+descricao: "Bom dia growdever",
+identificador: 5,
+},
+{titulo: "teste7",
+descricao: "Boa noite growdever",
+identificador: 6,
+},
+{titulo: "teste8",
+descricao: "Boa tarde growdever",
+identificador: 7,
+},
+{titulo: "teste9",
+descricao: "Bom dia growdever",
+identificador: 8,
 }];
 let identificadorUnicoRecado = 0;
 
@@ -116,9 +140,22 @@ app.post("/recados", function (requisicao, resposta) {
 
 app.get("/recados", function (requisicao, resposta) {
   //tentar adicionar um filtro opicional para o titulo
+  const page = requisicao.query.page; 
+  if (page < 1) {
+    return resposta.status(400).send("Página inválida") 
+  }
+ 
+  const recadosPorPagina = 5;
+  const maxPage =  Math.ceil(recados.length/recadosPorPagina);
+  if (page > maxPage) {
+    return resposta.status(400).send("Página inválida"); 
+  }
+  const messages = recados.slice((page-1)*recadosPorPagina, page*recadosPorPagina);
+  
+  
   resposta.json({
     quantidade: recados.length,
-    recados: recados,
+    recados: messages,
   });
 });
 
@@ -136,18 +173,8 @@ app.get("/recados/:id", function (requisicao, resposta) {
     resposta.status(404);
     resposta.send("Recado não encontrado");
   }
-  const messagesPerPage = 5; // Número de mensagens por página
-  const totalMessages = 20; // Total de mensagens no exemplo
-  const totalPages = Math.ceil(totalMessages / messagesPerPage);
-  
-  const paginationContainer = document.querySelector('.pagination');
-  const messagesContainer = document.querySelector('.messages');
-  
-  function renderMessages(page) {
-    const startIdx = (page - 1) * messagesPerPage;
-    const endIdx = startIdx + messagesPerPage;
 
-}});
+});
 
 
 app.put("/recados/:id", function (requisicao, resposta) {
