@@ -146,14 +146,15 @@ app.get("/recados", function (requisicao, resposta) {
  if (!maxPage){
     maxPage = 5;
  }
+  const recadosPorPagina = 5;
+  
   if (page > maxPage) {
     return resposta.status(400).send("Página inválida"); 
   }
-  if (maxPage > recados.length) {
-    maxPage = recados.length;
-  }
+  console.log(recados)
   if (page) {
-    const messages = recados.slice((page-1)*maxPage, page*maxPage);
+    const paginaAtual = page * 5; 
+    const messages = recados.slice((page-1)*recadosPorPagina, page*recadosPorPagina);
     return resposta.json({
           quantidade: recados.length,
           recados: messages,
