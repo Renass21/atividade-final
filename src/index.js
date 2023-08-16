@@ -140,15 +140,12 @@ app.get("/recados", function (requisicao, resposta) {
   //tentar adicionar um filtro opicional para o titulo
   const page = requisicao.query.page; 
   const maxPage = requisicao.query.maxPage;
-  if (page < 1) {
+  if (page < 1 || page > maxPage ) {
     return resposta.status(400).send("Página inválida") 
   }
  if (!maxPage){
     maxPage = 5;
  }
-  if (page > maxPage) {
-    return resposta.status(400).send("Página inválida"); 
-  }
   if (maxPage > recados.length) {
     maxPage = recados.length;
   }
