@@ -137,32 +137,26 @@ app.post("/recados", function (requisicao, resposta) {
 });
 
 app.get("/recados", function (requisicao, resposta) {
-  //tentar adicionar um filtro opicional para o titulo
+
   const page = requisicao.query.page; 
-  const maxPage = requisicao.query.maxPage;
-  if (page < 1 || page > maxPage ) {
+  if (page < 1) {
     return resposta.status(400).send("Página inválida") 
   }
- if (!maxPage){
-    maxPage = 5;
- }
-  if (maxPage > recados.length) {
-    maxPage = recados.length;
+ 
+  const recadosPorPagina = 5;
+  const maxPage =  Math.ceil(recados.length/recadosPorPagina);
+  if (page > maxPage) {
+    return resposta.status(400).send("Página inválida"); 
   }
-  if (page) {
-    const messages = recados.slice((page-1)*maxPage, page*maxPage);
-    return resposta.json({
-          quantidade: recados.length,
-          recados: messages,
-          });
-  }else {
-     return resposta.json({
-        quantidade: recados.length,
-        recados: recados,
-        });
-       }
+  const messages = recados.slice((page-1)*recadosPorPagina, page*recadosPorPagina);
   
+  
+  resposta.json({
+    quantidade: recados.length,
+    recados: messages,
+  });
 });
+
 
 app.get("/recados/:id", function (requisicao, resposta) {
   const id = parseInt(requisicao.params.id);
